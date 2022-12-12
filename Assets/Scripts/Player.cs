@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
 
     //Bullet
     [SerializeField] Transform bulletPrefab;
+    [SerializeField] float fireRate = 1f;
+    bool gunLoaded = true;
     float angle;
     Quaternion targetRotation;
 
@@ -41,10 +43,18 @@ public class Player : MonoBehaviour
         aim.position = (Vector3)facingDirection.normalized + transform.position;
 
         //Disparo
-        if(Input.GetMouseButton(0)){
+        if(Input.GetMouseButton(0) && gunLoaded){
+            gunLoaded = false;
             angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;//se multiplica por rad2deg paar retornar en grados
             targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
             Instantiate(bulletPrefab, transform.position, targetRotation);
+            StartCoroutine(ReloadGun());
         }
+    }
+
+    //corrutina
+    IEnumerator ReloadGun() {
+        yield return new WaitForSeconds(1/fireRate);
+        gunLoaded = true;
     }
 }
