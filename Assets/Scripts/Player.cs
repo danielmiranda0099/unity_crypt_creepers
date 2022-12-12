@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
     [SerializeField] Transform aim;
     [SerializeField] Camera camera;
 
+    //Bullet
+    [SerializeField] Transform bulletPrefab;
+    float angle;
+    Quaternion targetRotation;
+
     void Start()
     {
         
@@ -34,5 +39,12 @@ public class Player : MonoBehaviour
         //Movimiento de la mira
         facingDirection = camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         aim.position = (Vector3)facingDirection.normalized + transform.position;
+
+        //Disparo
+        if(Input.GetMouseButton(0)){
+            angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;//se multiplica por rad2deg paar retornar en grados
+            targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Instantiate(bulletPrefab, transform.position, targetRotation);
+        }
     }
 }

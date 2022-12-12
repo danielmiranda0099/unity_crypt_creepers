@@ -317,7 +317,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.9245283, g: 0.082858644, b: 0.082858644, a: 1}
+  m_Color: {r: 0.9254902, g: 0.77148, b: 0.08235295, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -649,6 +649,7 @@ MonoBehaviour:
   speed: 3
   aim: {fileID: 695781872}
   camera: {fileID: 519420031}
+  bulletPrefab: {fileID: 4275566653363772234, guid: 5cf86e5ae9a6b3d4a96f1e3b974f467a, type: 3}
 --- !u!212 &2105105836
 SpriteRenderer:
   m_ObjectHideFlags: 0
