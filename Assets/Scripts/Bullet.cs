@@ -8,11 +8,18 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        
+        Destroy(gameObject, 5);
     }
 
     void Update()
     {
         transform.position += transform.right * Time.deltaTime * speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        if(collision.CompareTag("Enemy")){
+            collision.GetComponent<Enemy>().TakeDamage();
+            Destroy(gameObject);
+        }
     }
 }
